@@ -1,10 +1,13 @@
 package com.harith.helloandroidui
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.res.painterResource
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -43,12 +46,13 @@ fun AppShell() {
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding(),
+
         topBar = {
             TopAppBar(
                 title = { Text("HelloAndroid") },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF2196F3),
-                    titleContentColor = Color.White
+                    containerColor = Color(0xFF1AA2AB),  // <-- AppBar background color (change here like CSS)
+                    titleContentColor = Color.White       // <-- AppBar text color
                 )
             )
         }
@@ -64,20 +68,42 @@ fun MainScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(24.dp),                 // <-- Change page padding here
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Welcome to Android Development!",
-            style = MaterialTheme.typography.titleMedium
+
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "App Logo",
+            modifier = Modifier
+                .size(120.dp)               // <-- Change logo size here
         )
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-        Button(onClick = {
-            Toast.makeText(context, "Button clicked!", Toast.LENGTH_SHORT).show()
-        }) {
+        Text(
+            text = "Welcome to Android Development!",
+            style = MaterialTheme.typography.titleLarge,   // <-- Larger font size
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // -------- BUTTON STYLING HERE (CSS-like) --------
+        Button(
+            onClick = {
+                Toast.makeText(context, "Button clicked!", Toast.LENGTH_SHORT).show()
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF1AA2AB),   // <-- Button background
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(1.dp),   // <-- Button border radius (1dp ≈ 1px)
+            modifier = Modifier
+                .height(48.dp)                  // <-- Button height
+                .width(160.dp)                  // <-- Button width
+        ) {
             Text("Click Me")
         }
     }

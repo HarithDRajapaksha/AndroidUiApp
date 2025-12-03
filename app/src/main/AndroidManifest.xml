@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloAndroidUI">
+
+        <!-- MAIN ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -18,10 +20,15 @@
             android:theme="@style/Theme.HelloAndroidUI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- ✅ ADD THIS -->
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
